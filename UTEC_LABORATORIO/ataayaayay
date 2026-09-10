@@ -1,0 +1,64 @@
+import sys
+
+def raiz_cuadrada_con_decimales_max_19(numero,numero_de_decimales):
+    
+    respuesta = 0
+
+    for i in range(int(numero)):
+        
+        if numero < i**2:
+            respuesta = i-1
+            break
+        elif numero == i**2:
+            respuesta = i
+            break
+
+        else:
+            continue
+    primera_vez = False
+    detener = False
+
+    numero_base = ""
+    nuevo_numero = ""
+    if numero != respuesta**2:
+        for i in range(numero_de_decimales):
+            
+            
+            base = True
+            if detener == True:
+                break
+            else:
+                for j in range (10):
+
+                    
+                    if primera_vez == False:
+                        
+                        nuevo_numero = str(int(respuesta)) + "."
+                        primera_vez = True
+
+                    
+                    if base == True:
+                        numero_base =  nuevo_numero
+                        base = False
+
+                    nuevo_numero = float(str(numero_base) + str(j))
+
+                    
+
+                    
+                    if float(nuevo_numero)**2 < numero:
+
+                        continue
+
+                    elif float(nuevo_numero)**2 > numero:
+
+                       
+                        respuesta = str(numero_base)+str(j-1)
+                        numero_base = respuesta
+                        nuevo_numero = respuesta
+                        
+                        break
+    return respuesta, len(str(respuesta)), numero_de_decimales
+
+for i in range(30):
+    print(raiz_cuadrada_con_decimales_max_19(18,i+1))
