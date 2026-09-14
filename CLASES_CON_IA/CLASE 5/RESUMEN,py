@@ -1,0 +1,37 @@
+df.info()        # tipos de dato y cuántos valores no-nulos tiene cada columna
+df.shape          # tupla (filas, columnas)
+df.columns        # lista con los nombres de las columnas
+df.head(n)        # primeras n filas (por defecto 5)
+df.tail(n)        # últimas n filas
+df['Columna']     # selecciona una columna como Series
+df.iloc[i]        # selecciona una fila por posición (índice numérico)
+
+df['Columna'].mean()      # promedio
+df['Columna'].median()    # mediana
+df['Columna'].std()       # desviación estándar
+df['Columna'].sum()       # suma
+df['Columna'].quantile(0.90)  # percentil 90
+df.describe()              # todas estas estadísticas juntas, para todas las columnas numéricas
+df['Columna'].describe()   # lo mismo pero solo para una columna
+
+df['Columna'].value_counts()               # cuántas veces aparece cada valor
+df['Columna'].value_counts(normalize=True)  # lo mismo pero como proporción (0 a 1)
+
+df.groupby('Categoria')['Precio'].sum()   # suma de precios, agrupado por categoría
+
+df.groupby('Categoria').agg({
+    'Precio': 'sum',
+    'Cantidad': 'mean'
+})  # varias métricas, sobre distintas columnas, en un solo llamado
+
+pd.merge(df1, df2, on="columna_en_comun", how="inner")  # solo coincidencias
+pd.merge(df1, df2, on="columna_en_comun", how="left")    # todo df1, complete con NaN si falta
+pd.merge(df1, df2, on="columna_en_comun", how="right")   # todo df2, mismo criterio
+pd.merge(df1, df2, on="columna_en_comun", how="outer")   # todo de ambos
+
+df[df['Precio'] > 100]           # filas donde se cumple la condición
+df[(df['A'] > 5) & (df['B'] < 10)]  # condiciones combinadas (& en vez de "and")
+
+df['Columna'].value_counts().plot(kind='bar')   # gráfico de barras
+df['Columna'].plot(kind='hist', bins=10)          # histograma
+df['Columna'].value_counts().plot(kind='pie', autopct='%1.1f%%')  # gráfico de torta
