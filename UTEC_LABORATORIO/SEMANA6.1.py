@@ -76,8 +76,32 @@ def codigo_barras(num):
             codigo_bar += numero_de_divisores(d)*"|"
     return codigo_bar
 
-print(codigo_barras(987808))
+def pregunta_67_1(monedas,precio):
+    contador = 0
+    while monedas >= precio:
+        contador += 1
+        monedas -= precio
+    return contador
 
+
+def pregunta_67_2(N):
+    contador = 0
+    for i in range(10,100):
+        suma_de_cifras = int(str(i)[0]) + int(str(i)[1]) 
+        if suma_de_cifras == N:
+            contador += 1
+
+    return contador
+
+def pregunta_76_3(planes,N):
+    contador = 0
+    for i in range(1,N+1):
+        if i % 3 == 0:
+            contador += 1
+
+    return contador * planes
+    
+print(pregunta_76_3(4,2))
 
 
 
